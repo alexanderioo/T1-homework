@@ -1,69 +1,50 @@
-# React + TypeScript + Vite
+# Менеджер задач (Task Manager)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Современное SPA-приложение для управления задачами с поддержкой AdmiralDS UI, смены темы, мультиязычности и адаптивного дизайна.
 
-Currently, two official plugins are available:
+## Описание
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Task Manager — это одностраничное приложение для ведения списка задач с возможностью добавления, редактирования, удаления, фильтрации и поиска задач. Интерфейс выполнен с использованием AdmiralDS UI, поддерживает светлую/тёмную тему и два языка (русский/английский).
 
-## Expanding the ESLint configuration
+**Основные возможности:**
+- Просмотр, добавление, редактирование и удаление задач
+- Фильтрация по статусу, категории, приоритету
+- Поиск по названию задачи
+- Мультиязычность (RU/EN)
+- Переключение светлой/тёмной темы
+- Современный адаптивный дизайн
+- Пример задач для быстрого старта
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Используемые технологии
+- React 18 + TypeScript
+- AdmiralDS UI (admiral-ds/react-ui)
+- styled-components
+- react-router-dom
+- Vite
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Запуск проекта
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+1. **Установите зависимости:**
+   ```bash
+   npm install
+   ```
+2. **Запустите проект в режиме разработки:**
+   ```bash
+   npm run dev
+   ```
+3. Откройте [http://localhost:5173](http://localhost:5173) в браузере.
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## Структура проекта
+- `src/pages/TaskListPage.tsx` — главная страница со списком задач, фильтрами и модалкой добавления/редактирования
+- `src/components/TaskItem.tsx` — карточка задачи
+- `src/components/EditTaskModal.tsx` — модальное окно редактирования задачи
+- `src/context/TaskContext.tsx` — контекст и хранилище задач
+- `src/types/task.ts` — типы задач
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Скриншоты
+- ![Светлая тема](./screenshots/light.png)
+- ![Тёмная тема](./screenshots/dark.png)
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+---
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+**Автор:** Фролов Александр Дмитриевич

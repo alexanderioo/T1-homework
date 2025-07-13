@@ -30,6 +30,85 @@ body {
   min-height: 100vh;
 }
 
+body.dark-theme, #root.dark-theme {
+  background: #18191a !important;
+  color: #fff !important;
+  transition: background 0.3s, color 0.3s;
+}
+body.light-theme, #root.light-theme {
+  background: #fff !important;
+  color: #222 !important;
+  transition: background 0.3s, color 0.3s;
+}
+
+/* DARK THEME UI ENHANCEMENTS */
+body.dark-theme .card,
+body.dark-theme .TaskItem_card__*,
+body.dark-theme .admiral-card {
+  background: #fff !important;
+  color: #111 !important;
+  border: 1px solid #23272f !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+}
+body.dark-theme .card * {
+  color: #111 !important;
+}
+body.dark-theme input,
+body.dark-theme select {
+  background: #fff !important;
+  color: #111 !important;
+  border: 1px solid #bbb !important;
+}
+body.dark-theme input::placeholder {
+  color: #888 !important;
+  opacity: 1;
+}
+body.dark-theme button {
+  background: #389fff !important;
+  color: #fff !important;
+  border: none !important;
+}
+body.dark-theme button[appearance="danger"] {
+  background: #ef4444 !important;
+}
+body.dark-theme button[appearance="secondary"] {
+  background: #444 !important;
+}
+body.dark-theme .admiral-tag,
+body.dark-theme .Tag {
+  color: #fff !important;
+  border: none !important;
+}
+body.dark-theme .admiral-tag[kind="warning"],
+body.dark-theme .Tag[kind="warning"] {
+  background: #facc15 !important;
+}
+body.dark-theme .admiral-tag[kind="attention"],
+body.dark-theme .Tag[kind="attention"] {
+  background: #3b82f6 !important;
+}
+body.dark-theme .admiral-tag[kind="error"],
+body.dark-theme .Tag[kind="error"] {
+  background: #ef4444 !important;
+}
+body.dark-theme .admiral-tag[kind="success"],
+body.dark-theme .Tag[kind="success"] {
+  background: #22C55E !important;
+}
+body.dark-theme .admiral-tag[kind="neutral"],
+body.dark-theme .Tag[kind="neutral"] {
+  background: #a1a1aa !important;
+}
+body.dark-theme .card h1,
+body.dark-theme .card h2,
+body.dark-theme .card h3,
+body.dark-theme .card p,
+body.dark-theme .card .admiral-typography,
+body.dark-theme .card .T {
+  color: #111 !important;
+  opacity: 1 !important;
+}
+
 h1 {
   font-size: 3.2em;
   line-height: 1.1;

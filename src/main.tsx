@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { ThemeProvider } from "styled-components";
+import { TaskProvider } from "./context/TaskContext";
 import {
   LIGHT_THEME,
   FontsVTBGroup,
@@ -11,11 +12,6 @@ import "./index.css";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <ThemeProvider theme={LIGHT_THEME}>
-      <DropdownProvider>
-        <FontsVTBGroup />
-        <App />
-      </DropdownProvider>
-    </ThemeProvider>
+    <App />
   </React.StrictMode>
 );
