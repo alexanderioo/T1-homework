@@ -1562,7 +1562,7 @@ Error generating stack: `+c.message+`
   ${t=>t.theme.typography[t.$font]};
   ${t=>t.$cssMixin?t.$cssMixin:""}
   ${t=>t.$skeleton&&yw}
-`,or=zc(({font:t,color:o,cssMixin:i,skeleton:l,...u},d)=>N.jsx(vw,{ref:d,...u,$font:t,$color:o,$cssMixin:i,$skeleton:l}));or.displayName="T";const xw="/assets/VTBGroupUI-SemiBold-Wupg3RVc.ttf",ww="/assets/VTBGroupUI-Medium-CJW7SkqK.otf",Sw="/assets/VTBGroupUI-Regular-JWIonCWQ.otf",Ew=`
+`,or=zc(({font:t,color:o,cssMixin:i,skeleton:l,...u},d)=>N.jsx(vw,{ref:d,...u,$font:t,$color:o,$cssMixin:i,$skeleton:l}));or.displayName="T";const xw="/T1-homework/assets/VTBGroupUI-SemiBold-Wupg3RVc.ttf",ww="/T1-homework/assets/VTBGroupUI-Medium-CJW7SkqK.otf",Sw="/T1-homework/assets/VTBGroupUI-Regular-JWIonCWQ.otf",Ew=`
     @font-face {
         font-family: 'VTB Group UI';
         src: url('${xw}') format('truetype');
