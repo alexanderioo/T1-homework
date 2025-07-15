@@ -6,19 +6,19 @@ import styled from "styled-components";
 const Grid = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 32px 24px;
+  gap: 40px 24px;
   justify-content: center;
   align-items: stretch;
   margin: 32px 0;
 
   @media (max-width: 900px) {
     grid-template-columns: repeat(2, 1fr);
-    gap: 20px 12px;
+    gap: 28px 12px;
     margin: 20px 0;
   }
   @media (max-width: 600px) {
     grid-template-columns: 1fr;
-    gap: 16px 0;
+    gap: 20px 0;
     margin: 12px 0;
   }
 `;

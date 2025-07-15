@@ -14,6 +14,7 @@ const Card = styled.div`
   box-shadow: 0 2px 8px rgba(0,0,0,0.08);
   min-width: 260px;
   height: 100%;
+  margin-bottom: 20px; /* Добавлен внешний отступ для разделения карточек */
 `;
 
 const CardContent = styled.div`

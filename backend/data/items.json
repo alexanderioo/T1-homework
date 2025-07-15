@@ -25,5 +25,68 @@
     "priority": "low",
     "category": "refactor",
     "createdAt": "2024-01-03T14:00:00.000Z"
+  },
+  {
+    "id": "4",
+    "title": "Добавить тёмную тему",
+    "description": "Реализовать переключение светлой/тёмной темы в настройках",
+    "status": "todo",
+    "priority": "medium",
+    "category": "feature",
+    "createdAt": "2024-01-04T09:30:00.000Z"
+  },
+  {
+    "id": "5",
+    "title": "Обновить зависимости",
+    "description": "Провести аудит npm-пакетов и обновить устаревшие",
+    "status": "in_progress",
+    "priority": "low",
+    "category": "maintenance",
+    "createdAt": "2024-01-05T11:15:00.000Z"
+  },
+  {
+    "id": "6",
+    "title": "Добавить поиск по задачам",
+    "description": "Реализовать фильтрацию и поиск задач по ключевым словам",
+    "status": "todo",
+    "priority": "high",
+    "category": "feature",
+    "createdAt": "2024-01-06T13:45:00.000Z"
+  },
+  {
+    "id": "7",
+    "title": "Починить отправку email-уведомлений",
+    "description": "Письма не доходят до пользователей при смене статуса задачи",
+    "status": "todo",
+    "priority": "high",
+    "category": "bug",
+    "createdAt": "2024-01-07T08:20:00.000Z"
+  },
+  {
+    "id": "8",
+    "title": "Добавить unit-тесты для TaskList",
+    "description": "Покрыть компонент TaskList тестами на Jest",
+    "status": "in_progress",
+    "priority": "medium",
+    "category": "test",
+    "createdAt": "2024-01-08T16:10:00.000Z"
+  },
+  {
+    "id": "9",
+    "title": "Сделать адаптивную верстку",
+    "description": "Обеспечить корректное отображение на мобильных устройствах",
+    "status": "todo",
+    "priority": "high",
+    "category": "feature",
+    "createdAt": "2024-01-09T18:00:00.000Z"
+  },
+  {
+    "id": "10",
+    "title": "Добавить страницу 404",
+    "description": "Реализовать отображение страницы ошибки для несуществующих маршрутов",
+    "status": "done",
+    "priority": "low",
+    "category": "feature",
+    "createdAt": "2024-01-10T20:30:00.000Z"
   }
 ]
