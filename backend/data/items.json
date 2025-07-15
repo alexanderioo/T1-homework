@@ -1,0 +1,29 @@
+[
+  {
+    "id": "1",
+    "title": "Исправить баг в авторизации",
+    "description": "Ошибка при входе через Google",
+    "status": "todo",
+    "priority": "high",
+    "category": "bug",
+    "createdAt": "2024-01-01T10:00:00.000Z"
+  },
+  {
+    "id": "2",
+    "title": "Добавить документацию",
+    "description": "",
+    "status": "in_progress",
+    "priority": "medium",
+    "category": "documentation",
+    "createdAt": "2024-01-02T12:00:00.000Z"
+  },
+  {
+    "id": "3",
+    "title": "Рефакторинг кода",
+    "description": "Улучшить структуру компонентов и убрать дублирование",
+    "status": "done",
+    "priority": "low",
+    "category": "refactor",
+    "createdAt": "2024-01-03T14:00:00.000Z"
+  }
+]

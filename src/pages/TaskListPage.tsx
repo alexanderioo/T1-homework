@@ -1,13 +1,14 @@
 import TaskList from "../components/TaskList";
 import { useSelector, useDispatch } from "react-redux";
-import { createTask, updateTask, deleteTask, setTasks, deleteAllTasks } from '../store/tasksSlice';
-import { useState } from "react";
+import { fetchTasks, createTaskAsync, updateTaskAsync, deleteTaskAsync } from '../store/tasksSlice';
+import { useState, useEffect } from "react";
 import { Modal } from "@admiral-ds/react-ui";
 import styled from "styled-components";
 import { T, Button } from "@admiral-ds/react-ui";
 import type { Task } from "../types/task";
 import EditTaskModal from '../components/EditTaskModal';
 import type { RootState } from '../store';
+import type { AppDispatch } from '../store';
 
 const FiltersBar = styled.div`
   display: flex;
@@ -98,8 +99,8 @@ interface TaskListPageProps {
 }
 
 function TaskListPage({ dict, language }: TaskListPageProps & { language: 'ru' | 'en' }) {
-  const tasks = useSelector((state: RootState) => state.tasks.tasks);
-  const dispatch = useDispatch();
+  const { tasks, loading, error } = useSelector((state: RootState) => state.tasks);
+  const dispatch: AppDispatch = useDispatch();
   const [search, setSearch] = useState("");
   const [status, setStatus] = useState("");
   const [category, setCategory] = useState("");
@@ -120,6 +121,10 @@ function TaskListPage({ dict, language }: TaskListPageProps & { language: 'ru' |
   });
   const [editTask, setEditTask] = useState<Task | null>(null);
   const [editTaskData, setEditTaskData] = useState<Task | null>(null);
+
+  useEffect(() => {
+    dispatch(fetchTasks());
+  }, [dispatch]);
 
   const restoreDemoTasks = () => {
     const demo: Task[] = [
@@ -174,12 +179,12 @@ function TaskListPage({ dict, language }: TaskListPageProps & { language: 'ru' |
         dueDate: new Date(2025, 6, 20, 18, 0, 0).toISOString(),
       },
     ];
-    dispatch(deleteAllTasks());
-    dispatch(setTasks(demo));
+    // dispatch(deleteAllTasks()); // This line is removed as per the edit hint
+    // dispatch(setTasks(demo)); // This line is removed as per the edit hint
   };
 
   const deleteAllTasksHandler = () => {
-    dispatch(deleteAllTasks());
+    // dispatch(deleteAllTasks()); // This line is removed as per the edit hint
   };
 
   const handleAddTask = () => {
@@ -187,14 +192,12 @@ function TaskListPage({ dict, language }: TaskListPageProps & { language: 'ru' |
   };
 
   const handleAddTaskSave = () => {
-    dispatch(createTask({
-      id: Date.now().toString(),
+    dispatch(createTaskAsync({
       title: newTask.title,
       description: newTask.description,
       category: newTask.category,
       status: newTask.status,
       priority: newTask.priority,
-      createdAt: new Date().toISOString(),
     }));
     setShowAddModal(false);
     setNewTask({
@@ -219,7 +222,7 @@ function TaskListPage({ dict, language }: TaskListPageProps & { language: 'ru' |
   };
   const handleEditSave = () => {
     if (editTaskData) {
-      dispatch(updateTask(editTaskData));
+      dispatch(updateTaskAsync(editTaskData));
       setEditTask(null);
       setEditTaskData(null);
     }
@@ -230,7 +233,7 @@ function TaskListPage({ dict, language }: TaskListPageProps & { language: 'ru' |
   };
 
   const handleDelete = (id: string) => {
-    dispatch(deleteTask(id));
+    dispatch(deleteTaskAsync(id));
   };
 
   const filtered = tasks.filter((task) => {
