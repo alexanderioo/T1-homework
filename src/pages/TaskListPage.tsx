@@ -9,6 +9,7 @@ import type { Task } from "../types/task";
 import EditTaskModal from '../components/EditTaskModal';
 import type { RootState } from '../store';
 import type { AppDispatch } from '../store';
+import { Link } from "react-router-dom";
 
 const FiltersBar = styled.div`
   display: flex;
@@ -105,20 +106,6 @@ function TaskListPage({ dict, language }: TaskListPageProps & { language: 'ru' |
   const [status, setStatus] = useState("");
   const [category, setCategory] = useState("");
   const [priority, setPriority] = useState("");
-  const [showAddModal, setShowAddModal] = useState(false);
-  const [newTask, setNewTask] = useState<{
-    title: string;
-    description: string;
-    category: Task["category"];
-    status: Task["status"];
-    priority: Task["priority"];
-  }>({
-    title: "",
-    description: "",
-    category: "bug",
-    status: "todo",
-    priority: "medium",
-  });
   const [editTask, setEditTask] = useState<Task | null>(null);
   const [editTaskData, setEditTaskData] = useState<Task | null>(null);
 
@@ -187,32 +174,6 @@ function TaskListPage({ dict, language }: TaskListPageProps & { language: 'ru' |
     // dispatch(deleteAllTasks()); // This line is removed as per the edit hint
   };
 
-  const handleAddTask = () => {
-    setShowAddModal(true);
-  };
-
-  const handleAddTaskSave = () => {
-    dispatch(createTaskAsync({
-      title: newTask.title,
-      description: newTask.description,
-      category: newTask.category,
-      status: newTask.status,
-      priority: newTask.priority,
-    }));
-    setShowAddModal(false);
-    setNewTask({
-      title: "",
-      description: "",
-      category: "bug",
-      status: "todo",
-      priority: "medium",
-    });
-  };
-
-  const handleAddTaskChange = (field: string, value: string) => {
-    setNewTask((prev) => ({ ...prev, [field]: value }));
-  };
-
   const handleEdit = (task: Task) => {
     setEditTask(task);
     setEditTaskData({ ...task });
@@ -256,74 +217,12 @@ function TaskListPage({ dict, language }: TaskListPageProps & { language: 'ru' |
         <Button dimension="m" appearance="danger" onClick={deleteAllTasksHandler} style={{whiteSpace: 'normal'}}>
           {dict.deleteAll}
         </Button>
-        <Button dimension="m" appearance="primary" onClick={handleAddTask} style={{whiteSpace: 'normal'}}>
-          {dict.add}
-        </Button>
+        <Link to="/task/new" style={{ textDecoration: 'none' }}>
+          <Button dimension="m" appearance="primary" style={{whiteSpace: 'normal'}}>
+            {dict.add}
+          </Button>
+        </Link>
       </TopButtons>
-      {showAddModal && (
-        <div style={{
-          position: 'fixed',
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
-          backgroundColor: 'rgba(0, 0, 0, 0.5)',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          zIndex: 1000
-        }} onClick={() => setShowAddModal(false)}>
-          <div style={{ 
-            maxWidth: 400, 
-            padding: 24, 
-            backgroundColor: 'white',
-            borderRadius: 12,
-            display: 'flex', 
-            flexDirection: 'column', 
-            gap: 16,
-            boxShadow: '0 4px 20px rgba(0,0,0,0.15)'
-          }} onClick={e => e.stopPropagation()}>
-            <T font="Subtitle/Subtitle 1">{language === 'ru' ? 'Добавить задачу' : 'Add Task'}</T>
-            <input
-              style={{ padding: 8, borderRadius: 8, border: '1px solid #ccc' }}
-              placeholder={language === 'ru' ? 'Заголовок' : 'Title'}
-              value={newTask.title}
-              onChange={e => handleAddTaskChange('title', e.target.value)}
-            />
-            <textarea
-              style={{ padding: 8, borderRadius: 8, border: '1px solid #ccc', minHeight: 60 }}
-              placeholder={language === 'ru' ? 'Описание' : 'Description'}
-              value={newTask.description}
-              onChange={e => handleAddTaskChange('description', e.target.value)}
-            />
-            <select value={newTask.category} onChange={e => handleAddTaskChange('category', e.target.value)}>
-              <option value="bug">{language === 'ru' ? 'Баг' : 'Bug'}</option>
-              <option value="feature">{language === 'ru' ? 'Функция' : 'Feature'}</option>
-              <option value="documentation">{language === 'ru' ? 'Документация' : 'Documentation'}</option>
-              <option value="refactor">{language === 'ru' ? 'Рефакторинг' : 'Refactor'}</option>
-              <option value="test">{language === 'ru' ? 'Тест' : 'Test'}</option>
-            </select>
-            <select value={newTask.status} onChange={e => handleAddTaskChange('status', e.target.value)}>
-              <option value="todo">{language === 'ru' ? 'Ожидает' : 'To Do'}</option>
-              <option value="in_progress">{language === 'ru' ? 'В работе' : 'In Progress'}</option>
-              <option value="done">{language === 'ru' ? 'Выполнено' : 'Done'}</option>
-            </select>
-            <select value={newTask.priority} onChange={e => handleAddTaskChange('priority', e.target.value)}>
-              <option value="low">{language === 'ru' ? 'Низкий' : 'Low'}</option>
-              <option value="medium">{language === 'ru' ? 'Средний' : 'Medium'}</option>
-              <option value="high">{language === 'ru' ? 'Высокий' : 'High'}</option>
-            </select>
-            <div style={{ display: 'flex', gap: 12, justifyContent: 'flex-end' }}>
-              <Button dimension="s" appearance="secondary" onClick={() => setShowAddModal(false)}>
-                {language === 'ru' ? 'Отмена' : 'Cancel'}
-              </Button>
-              <Button dimension="s" onClick={handleAddTaskSave} disabled={!newTask.title.trim()}>
-                {language === 'ru' ? 'Сохранить' : 'Save'}
-              </Button>
-            </div>
-          </div>
-        </div>
-      )}
       <FiltersBar className="filters-bar">
         <Input
           type="text"

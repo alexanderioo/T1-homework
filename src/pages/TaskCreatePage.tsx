@@ -1,10 +1,9 @@
-import { type FC, useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-import { updateTaskAsync } from '../store/tasksSlice';
-import type { RootState, AppDispatch } from '../store';
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { createTaskAsync } from '../store/tasksSlice';
+import type { AppDispatch } from '../store';
 import type { Task } from "../types/task";
-
 import {
   T,
   TextField,
@@ -22,55 +21,44 @@ const Container = styled.div`
   gap: 16px;
 `;
 
-interface TaskDetailsPageProps {
+interface TaskCreatePageProps {
   dict: any;
   language: 'ru' | 'en';
 }
 
-const TaskDetailsPage: FC<TaskDetailsPageProps> = ({ dict, language }) => {
-  const { id } = useParams<{ id: string }>();
-  const navigate = useNavigate();
+const TaskCreatePage = ({ dict, language }: TaskCreatePageProps) => {
   const dispatch: AppDispatch = useDispatch();
-  const tasks = useSelector((state: RootState) => state.tasks.tasks);
+  const navigate = useNavigate();
+  const [formData, setFormData] = useState<Omit<Task, 'id' | 'createdAt'>>({
+    title: '',
+    description: '',
+    category: 'bug',
+    status: 'todo',
+    priority: 'medium',
+  });
 
-  const task = tasks.find((t) => t.id === id);
-  const [formData, setFormData] = useState<Task | null>(null);
-
-  useEffect(() => {
-    if (task) setFormData(task);
-  }, [task]);
-
-  if (!formData) {
-    return <T font="Body/Body 1 Short">Задача не найдена</T>;
-  }
-
-  const handleChange = (field: keyof Task, value: string) => {
-    setFormData((prev) => prev && { ...prev, [field]: value });
+  const handleChange = (field: keyof typeof formData, value: string) => {
+    setFormData((prev) => ({ ...prev, [field]: value }));
   };
 
   const handleSave = () => {
-    if (formData) {
-      dispatch(updateTaskAsync(formData));
-      navigate("/");
-    }
+    dispatch(createTaskAsync(formData));
+    navigate('/');
   };
 
   return (
     <Container>
-      <T font="Subtitle/Subtitle 1">Редактирование задачи</T>
-
+      <T font="Subtitle/Subtitle 1">{language === 'ru' ? 'Создать задачу' : 'Create Task'}</T>
       <TextField
         value={formData.title}
-        onChange={(e) => handleChange("title", e.target.value)}
-        placeholder="Заголовок"
+        onChange={e => handleChange('title', e.target.value)}
+        placeholder={language === 'ru' ? 'Заголовок' : 'Title'}
       />
-
       <TextField
-        value={formData.description || ""}
-        onChange={(e) => handleChange("description", e.target.value)}
-        placeholder="Описание"
+        value={formData.description || ''}
+        onChange={e => handleChange('description', e.target.value)}
+        placeholder={language === 'ru' ? 'Описание' : 'Description'}
       />
-
       <select value={formData.category} onChange={e => handleChange('category', e.target.value)}>
         <option value="bug">{language === 'ru' ? 'Баг' : 'Bug'}</option>
         <option value="feature">{language === 'ru' ? 'Функция' : 'Feature'}</option>
@@ -88,21 +76,20 @@ const TaskDetailsPage: FC<TaskDetailsPageProps> = ({ dict, language }) => {
         <option value="medium">{language === 'ru' ? 'Средний' : 'Medium'}</option>
         <option value="high">{language === 'ru' ? 'Высокий' : 'High'}</option>
       </select>
-
       <div style={{ display: "flex", gap: 12 }}>
-        <Button dimension="s" onClick={handleSave}>
-          Сохранить
+        <Button dimension="s" onClick={handleSave} disabled={!formData.title.trim()}>
+          {language === 'ru' ? 'Создать' : 'Create'}
         </Button>
         <Button
           dimension="s"
           appearance="secondary"
           onClick={() => navigate("/")}
         >
-          Отмена
+          {language === 'ru' ? 'Отмена' : 'Cancel'}
         </Button>
       </div>
     </Container>
   );
 };
 
-export default TaskDetailsPage;
+export default TaskCreatePage; 

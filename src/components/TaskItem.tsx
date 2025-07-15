@@ -108,7 +108,7 @@ const TaskItem: FC<TaskItemProps> = ({ task, language = 'ru', dict, onEdit, onDe
         <Button dimension="s" appearance="secondary" onClick={() => {}}>
           ✓
         </Button>
-        <Button dimension="s" onClick={() => onEdit && onEdit(task)}>
+        <Button dimension="s" onClick={() => navigate(`/task/${task.id}`)}>
           ✏️
         </Button>
         <Button dimension="s" appearance="danger" onClick={() => onDelete && onDelete(task.id)}>
