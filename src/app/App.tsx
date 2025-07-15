@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
 import styled from "styled-components";
 import { RouterProvider } from "react-router-dom";
-import { getRoutes } from "./router";
+import { getRoutes } from "../router";
 
-import "./App.css";
+import "../App.css";
 
-import reactLogo from "./assets/react.svg";
+import reactLogo from "../assets/react.svg";
 import { T, Link } from "@admiral-ds/react-ui";
-import Header from "./components/Header";
+import Header from "../components/Header";
 
 const Divider = styled.div`
   width: 10px;
@@ -18,7 +18,7 @@ import { LIGHT_THEME, DARK_THEME } from "@admiral-ds/react-ui";
 import { ThemeProvider } from "styled-components";
 import { DropdownProvider } from "@admiral-ds/react-ui";
 import { FontsVTBGroup } from "@admiral-ds/react-ui";
-import TaskListPage from "./pages/TaskListPage";
+import TaskListPage from "../pages/TaskListPage";
 
 function App() {
   const [theme, setTheme] = useState<'light' | 'dark'>("light");

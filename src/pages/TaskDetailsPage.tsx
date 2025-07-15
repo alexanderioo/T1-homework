@@ -1,7 +1,7 @@
 import { type FC, useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { updateTaskAsync } from '../store/tasksSlice';
+import { updateTaskAsync } from '../entities/task/model/tasksSlice';
 import type { RootState, AppDispatch } from '../store';
 import type { Task } from "../types/task";
 

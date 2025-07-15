@@ -1,5 +1,5 @@
 import type { FC } from "react";
-import type { Task } from "../types/task";
+import type { Task } from "../../types/task";
 import { useNavigate } from "react-router-dom";
 import { T, Button, Tag } from "@admiral-ds/react-ui";
 import styled from "styled-components";

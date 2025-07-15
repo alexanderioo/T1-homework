@@ -1,5 +1,5 @@
 import type { FC } from "react";
-import type { Task } from "../types/task";
+import type { Task } from "../../types/task";
 import TaskItem from "./TaskItem";
 import styled from "styled-components";
 

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { createTaskAsync } from '../store/tasksSlice';
+import { createTaskAsync } from '../entities/task/model/tasksSlice';
 import type { AppDispatch } from '../store';
 import type { Task } from "../types/task";
 import {

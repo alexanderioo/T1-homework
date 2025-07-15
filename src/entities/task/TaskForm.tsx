@@ -1,7 +1,6 @@
-import { useState, useEffect } from "react";
 import { T, TextField, Button } from "@admiral-ds/react-ui";
 import styled from "styled-components";
-import type { Task } from "../types/task";
+import type { Task } from "../../types/task";
 
 const Container = styled.div`
   max-width: 600px;

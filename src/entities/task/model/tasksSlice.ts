@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
-import type { Task } from '../types/task';
+import type { Task } from '../../../types/task';
 
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:4000/api/tasks';
 

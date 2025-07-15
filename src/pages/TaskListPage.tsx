@@ -1,6 +1,6 @@
-import TaskList from "../components/TaskList";
+import TaskList from "../entities/task/TaskList";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchTasks, createTaskAsync, updateTaskAsync, deleteTaskAsync } from '../store/tasksSlice';
+import { fetchTasks, createTaskAsync, updateTaskAsync, deleteTaskAsync } from '../entities/task/model/tasksSlice';
 import { useState, useEffect } from "react";
 import { Modal } from "@admiral-ds/react-ui";
 import styled from "styled-components";
