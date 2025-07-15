@@ -87,7 +87,7 @@ const TaskItem: FC<TaskItemProps> = ({ task, language = 'ru', dict, onEdit, onDe
   };
 
   return (
-    <Card>
+    <Card onClick={() => navigate(`/task/${task.id}`)} style={{ cursor: 'pointer' }}>
       <CardContent>
         <T font="Subtitle/Subtitle 1" style={{ color: '#111' }}>{task.title}</T>
         {task.description && (
@@ -104,13 +104,7 @@ const TaskItem: FC<TaskItemProps> = ({ task, language = 'ru', dict, onEdit, onDe
           <Tag kind={priorityKind as any}>{priorityLabels[language][task.priority] || task.priority}</Tag>
         </TagRow>
       </CardContent>
-      <Actions>
-        <Button dimension="s" appearance="secondary" onClick={() => {}}>
-          ✓
-        </Button>
-        <Button dimension="s" onClick={() => navigate(`/task/${task.id}`)}>
-          ✏️
-        </Button>
+      <Actions onClick={e => e.stopPropagation()}>
         <Button dimension="s" appearance="danger" onClick={() => onDelete && onDelete(task.id)}>
           🗑️
         </Button>
