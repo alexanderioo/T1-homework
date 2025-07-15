@@ -18,7 +18,6 @@ import { LIGHT_THEME, DARK_THEME } from "@admiral-ds/react-ui";
 import { ThemeProvider } from "styled-components";
 import { DropdownProvider } from "@admiral-ds/react-ui";
 import { FontsVTBGroup } from "@admiral-ds/react-ui";
-import { TaskProvider } from "./context/TaskContext";
 import TaskListPage from "./pages/TaskListPage";
 
 function App() {
@@ -92,16 +91,14 @@ function App() {
     <ThemeProvider theme={admiralTheme}>
       <DropdownProvider>
         <FontsVTBGroup />
-        <TaskProvider>
-          <Header
-            theme={theme}
-            onToggleTheme={toggleTheme}
-            language={language}
-            onToggleLanguage={toggleLanguage}
-            dict={dict[language]}
-          />
-          <RouterProvider router={router} />
-        </TaskProvider>
+        <Header
+          theme={theme}
+          onToggleTheme={toggleTheme}
+          language={language}
+          onToggleLanguage={toggleLanguage}
+          dict={dict[language]}
+        />
+        <RouterProvider router={router} />
       </DropdownProvider>
     </ThemeProvider>
   );

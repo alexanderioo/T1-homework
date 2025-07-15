@@ -1,6 +1,8 @@
 import { type FC, useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { useTasks } from "../context/TaskContext";
+import { useSelector, useDispatch } from "react-redux";
+import { updateTask } from '../store/tasksSlice';
+import type { RootState } from '../store';
 import type { Task } from "../types/task";
 
 import {
@@ -28,7 +30,8 @@ interface TaskDetailsPageProps {
 const TaskDetailsPage: FC<TaskDetailsPageProps> = ({ dict, language }) => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
-  const { tasks, updateTask } = useTasks();
+  const dispatch = useDispatch();
+  const tasks = useSelector((state: RootState) => state.tasks.tasks);
 
   const task = tasks.find((t) => t.id === id);
   const [formData, setFormData] = useState<Task | null>(null);
@@ -47,7 +50,7 @@ const TaskDetailsPage: FC<TaskDetailsPageProps> = ({ dict, language }) => {
 
   const handleSave = () => {
     if (formData) {
-      updateTask(formData);
+      dispatch(updateTask(formData));
       navigate("/");
     }
   };

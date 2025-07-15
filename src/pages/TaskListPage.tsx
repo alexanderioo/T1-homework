@@ -1,11 +1,13 @@
 import TaskList from "../components/TaskList";
-import { useTasks } from "../context/TaskContext";
+import { useSelector, useDispatch } from "react-redux";
+import { createTask, updateTask, deleteTask, setTasks, deleteAllTasks } from '../store/tasksSlice';
 import { useState } from "react";
 import { Modal } from "@admiral-ds/react-ui";
 import styled from "styled-components";
 import { T, Button } from "@admiral-ds/react-ui";
 import type { Task } from "../types/task";
 import EditTaskModal from '../components/EditTaskModal';
+import type { RootState } from '../store';
 
 const FiltersBar = styled.div`
   display: flex;
@@ -96,7 +98,8 @@ interface TaskListPageProps {
 }
 
 function TaskListPage({ dict, language }: TaskListPageProps & { language: 'ru' | 'en' }) {
-  const { tasks, deleteTask, addTask, updateTask } = useTasks();
+  const tasks = useSelector((state: RootState) => state.tasks.tasks);
+  const dispatch = useDispatch();
   const [search, setSearch] = useState("");
   const [status, setStatus] = useState("");
   const [category, setCategory] = useState("");
@@ -171,15 +174,12 @@ function TaskListPage({ dict, language }: TaskListPageProps & { language: 'ru' |
         dueDate: new Date(2025, 6, 20, 18, 0, 0).toISOString(),
       },
     ];
-    // Удалить все задачи
-    tasks.forEach(t => deleteTask(t.id));
-    // Добавить демо
-    demo.forEach(addTask);
+    dispatch(deleteAllTasks());
+    dispatch(setTasks(demo));
   };
 
-  // Удалить все задачи
-  const deleteAllTasks = () => {
-    tasks.forEach(t => deleteTask(t.id));
+  const deleteAllTasksHandler = () => {
+    dispatch(deleteAllTasks());
   };
 
   const handleAddTask = () => {
@@ -187,7 +187,7 @@ function TaskListPage({ dict, language }: TaskListPageProps & { language: 'ru' |
   };
 
   const handleAddTaskSave = () => {
-    addTask({
+    dispatch(createTask({
       id: Date.now().toString(),
       title: newTask.title,
       description: newTask.description,
@@ -195,7 +195,7 @@ function TaskListPage({ dict, language }: TaskListPageProps & { language: 'ru' |
       status: newTask.status,
       priority: newTask.priority,
       createdAt: new Date().toISOString(),
-    });
+    }));
     setShowAddModal(false);
     setNewTask({
       title: "",
@@ -219,7 +219,7 @@ function TaskListPage({ dict, language }: TaskListPageProps & { language: 'ru' |
   };
   const handleEditSave = () => {
     if (editTaskData) {
-      updateTask(editTaskData);
+      dispatch(updateTask(editTaskData));
       setEditTask(null);
       setEditTaskData(null);
     }
@@ -230,7 +230,7 @@ function TaskListPage({ dict, language }: TaskListPageProps & { language: 'ru' |
   };
 
   const handleDelete = (id: string) => {
-    deleteTask(id);
+    dispatch(deleteTask(id));
   };
 
   const filtered = tasks.filter((task) => {
@@ -250,7 +250,7 @@ function TaskListPage({ dict, language }: TaskListPageProps & { language: 'ru' |
         <Button dimension="m" appearance="secondary" onClick={restoreDemoTasks} style={{whiteSpace: 'normal'}}>
           {dict.restore}
         </Button>
-        <Button dimension="m" appearance="danger" onClick={deleteAllTasks} style={{whiteSpace: 'normal'}}>
+        <Button dimension="m" appearance="danger" onClick={deleteAllTasksHandler} style={{whiteSpace: 'normal'}}>
           {dict.deleteAll}
         </Button>
         <Button dimension="m" appearance="primary" onClick={handleAddTask} style={{whiteSpace: 'normal'}}>

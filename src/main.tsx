@@ -1,7 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import { Provider } from "react-redux";
+import { store } from "./store";
 import { ThemeProvider } from "styled-components";
-import { TaskProvider } from "./context/TaskContext";
 import {
   LIGHT_THEME,
   FontsVTBGroup,
@@ -12,6 +13,8 @@ import "./index.css";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>
   </React.StrictMode>
 );
