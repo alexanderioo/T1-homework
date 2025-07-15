@@ -136,10 +136,10 @@ const Header = ({ theme, onToggleTheme, language, onToggleLanguage, dict }: Head
   return (
     <HeaderBar>
       <LogoBox>
-        <LogoImg src="/react.svg" alt="logo" />
+        <LogoImg src="./react.svg" alt="logo" />
       </LogoBox>
       <SearchBox>
-        <IconImg src="/search.svg" alt="search" />
+        <IconImg src="./search.svg" alt="search" />
         <SearchInput
           type="text"
           placeholder={dict.searchPlaceholder}
@@ -149,10 +149,10 @@ const Header = ({ theme, onToggleTheme, language, onToggleLanguage, dict }: Head
         <Shortcut>{dict.shortcut}</Shortcut>
       </SearchBox>
       <IconBtn title={language === 'ru' ? 'Switch to English' : 'Переключить на русский'} onClick={onToggleLanguage}>
-        <IconImg src="/globe.svg" alt="lang" />
+        <IconImg src="./globe.svg" alt="lang" />
       </IconBtn>
       <IconBtn title="Сменить тему" onClick={onToggleTheme}>
-        <IconImg src={theme === 'light' ? '/sun.svg' : '/moon.svg'} alt="theme" />
+        <IconImg src={theme === 'light' ? './sun.svg' : './moon.svg'} alt="theme" />
       </IconBtn>
     </HeaderBar>
   );
