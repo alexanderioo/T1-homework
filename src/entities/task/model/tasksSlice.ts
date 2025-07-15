@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 import type { Task } from '../../../types/task';
 
-const API_URL = import.meta.env.VITE_API_URL || 'https://alexanderioo.github.io/T1-homework/api/tasks';
+const API_URL = import.meta.env.VITE_API_URL || 'https://t1-homework-lwtl.onrender.com/api/tasks';
 
 export const fetchTasks = createAsyncThunk('tasks/fetchTasks', async () => {
   const res = await fetch(API_URL);
