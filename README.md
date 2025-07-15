@@ -1,13 +1,8 @@
-<<<<<<< HEAD
-# T1-homework (Домашняя 1 находится в другой ветке)
-=======
 # Менеджер задач (Task Manager)
 
-Современное SPA-приложение для управления задачами с поддержкой AdmiralDS UI, смены темы, мультиязычности и адаптивного дизайна.
+## Описание реализованного функционала
 
-## Описание
-
-Task Manager — это одностраничное приложение для ведения списка задач с возможностью добавления, редактирования, удаления, фильтрации и поиска задач. Интерфейс выполнен с использованием AdmiralDS UI, поддерживает светлую/тёмную тему и два языка (русский/английский).
+Task Manager — современное SPA-приложение для управления задачами с поддержкой AdmiralDS UI, смены темы, мультиязычности и адаптивного дизайна.
 
 **Основные возможности:**
 - Просмотр, добавление, редактирование и удаление задач
@@ -17,38 +12,56 @@ Task Manager — это одностраничное приложение для
 - Переключение светлой/тёмной темы
 - Современный адаптивный дизайн
 - Пример задач для быстрого старта
+- Backend на Express (Node.js) с хранением задач в JSON и REST API
 
-## Используемые технологии
-- React 18 + TypeScript
-- AdmiralDS UI (admiral-ds/react-ui)
-- styled-components
-- react-router-dom
-- Vite
+## Инструкция по запуску проекта
 
-## Запуск проекта
-
-1. **Установите зависимости:**
+### Фронтенд (Vite + React)
+1. Установите зависимости:
    ```bash
    npm install
    ```
-2. **Запустите проект в режиме разработки:**
+2. Запустите проект в режиме разработки:
    ```bash
    npm run dev
    ```
 3. Откройте [http://localhost:5173](http://localhost:5173) в браузере.
 
-## Структура проекта
-- `src/pages/TaskListPage.tsx` — главная страница со списком задач, фильтрами и модалкой добавления/редактирования
-- `src/components/TaskItem.tsx` — карточка задачи
-- `src/components/EditTaskModal.tsx` — модальное окно редактирования задачи
-- `src/context/TaskContext.tsx` — контекст и хранилище задач
-- `src/types/task.ts` — типы задач
+### Backend (Express)
+1. Перейдите в папку backend:
+   ```bash
+   cd backend
+   npm install
+   ```
+2. Запустите сервер:
+   ```bash
+   node server.js
+   ```
+3. API будет доступен по адресу [http://localhost:4000/api/tasks](http://localhost:4000/api/tasks)
 
-## Скриншоты
-- ![Светлая тема](./screenshots/light.png)
-- ![Тёмная тема](./screenshots/dark.png)
+## Используемые технологии и подходы
+- React 18 + TypeScript
+- Redux Toolkit (RTK) + createAsyncThunk
+- AdmiralDS UI (admiral-ds/react-ui)
+- styled-components
+- react-router-dom v6+
+- Vite
+- Express (Node.js)
+- REST API, хранение задач в JSON
+- Архитектура Feature-Sliced Design (FSD)
+
+## Краткое описание архитектуры
+- Проект реализован по принципам Feature-Sliced Design (FSD): разделение на app, entities, features, pages, widgets, shared.
+- Для управления состоянием используется Redux Toolkit (RTK) с асинхронными экшенами (createAsyncThunk).
+- Маршрутизация реализована через react-router-dom.
+- Backend вынесен в отдельную папку и развёрнут на Render.
+
+## Живой пример работы приложения
+- [Демо на GitHub Pages](https://alexanderioo.github.io/T1-homework/)
+- [Backend API (Render)](https://t1-homework-lwtl.onrender.com/api/tasks)
+
+## Ссылка на репозиторий
+[https://github.com/alexanderioo/T1-homework](https://github.com/alexanderioo/T1-homework)
 
 ---
-
 **Автор:** Фролов Александр Дмитриевич
->>>>>>> homework-first

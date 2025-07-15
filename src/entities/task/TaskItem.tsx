@@ -47,6 +47,15 @@ const DateRow = styled.div`
   font-size: 0.95em;
 `;
 
+/**
+ * Пропсы компонента TaskItem
+ * @typedef {Object} TaskItemProps
+ * @property {Task} task - Задача для отображения
+ * @property {'ru'|'en'} [language] - Язык интерфейса
+ * @property {any} [dict] - Словарь для мультиязычности
+ * @property {(task: Task) => void} [onEdit] - Колбэк для редактирования
+ * @property {(id: string) => void} [onDelete] - Колбэк для удаления
+ */
 interface TaskItemProps {
   task: Task;
   language?: 'ru' | 'en';
@@ -55,6 +64,11 @@ interface TaskItemProps {
   onDelete?: (id: string) => void;
 }
 
+/**
+ * Компонент карточки задачи
+ * @component
+ * @param {TaskItemProps} props
+ */
 const TaskItem: FC<TaskItemProps> = ({ task, language = 'ru', dict, onEdit, onDelete }) => {
   const navigate = useNavigate();
 

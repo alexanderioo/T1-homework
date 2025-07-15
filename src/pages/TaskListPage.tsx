@@ -73,6 +73,12 @@ const Select = styled.select`
   width: 140px;
 `;
 
+/**
+ * Пропсы страницы TaskListPage
+ * @typedef {Object} TaskListPageProps
+ * @property {object} dict - Словарь для мультиязычности и подписей
+ * @property {'ru'|'en'} language - Язык интерфейса
+ */
 interface TaskListPageProps {
   dict: {
     restore: string;
@@ -99,6 +105,11 @@ interface TaskListPageProps {
   };
 }
 
+/**
+ * Главная страница со списком задач, фильтрами и действиями
+ * @component
+ * @param {TaskListPageProps & { language: 'ru' | 'en' }} props
+ */
 function TaskListPage({ dict, language }: TaskListPageProps & { language: 'ru' | 'en' }) {
   const { tasks, loading, error } = useSelector((state: RootState) => state.tasks);
   const dispatch: AppDispatch = useDispatch();
