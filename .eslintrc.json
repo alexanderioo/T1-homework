@@ -1,0 +1,12 @@
+{
+  "extends": [
+    "react-app",
+    "plugin:react/recommended",
+    "plugin:import/recommended",
+    "prettier"
+  ],
+  "plugins": ["react", "react-hooks", "import"],
+  "rules": {
+    "react/react-in-jsx-scope": "off"
+  }
+} 
