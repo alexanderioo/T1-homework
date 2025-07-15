@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="refresh" content="0; url=/T1-homework/" />
+  </head>
+  <body>
+    <script>
+      // GitHub Pages SPA redirect
+      var l = window.location;
+      var path = l.pathname.replace(/^\/T1-homework/, '');
+      window.location.replace('/T1-homework/' + (path ? ('#' + path + l.search + l.hash) : ''));
+    </script>
+  </body>
+</html> 
