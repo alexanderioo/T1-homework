@@ -32,10 +32,22 @@ interface TaskListProps {
 }
 
 const TaskList: FC<TaskListProps> = ({ tasks, language = 'ru', dict, onEdit, onDelete }) => {
+  if (tasks.length === 0) {
+    return <div style={{ textAlign: 'center', color: '#888', margin: '40px 0' }}>
+      {language === 'ru' ? 'Нет задач' : 'No tasks'}
+    </div>;
+  }
   return (
     <Grid>
       {tasks.map((task) => (
-        <TaskItem key={task.id} task={task} language={language} dict={dict} onEdit={onEdit} onDelete={onDelete} />
+        <TaskItem
+          key={task.id}
+          task={task}
+          language={language}
+          dict={dict}
+          onEdit={onEdit}
+          onDelete={onDelete}
+        />
       ))}
     </Grid>
   );
